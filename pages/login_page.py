@@ -3,6 +3,12 @@ from .locators import LoginPageLocators
 
 
 class LoginPage(BasePage):
+    def register_new_user(self, email, password):
+        assert self.set_text_to_element(email, *LoginPageLocators.EMAIL_FIELD), "trouble with sending email"
+        assert self.set_text_to_element(password, *LoginPageLocators.PASS1_FIELD), "trouble with sending password 1"
+        assert self.set_text_to_element(password, *LoginPageLocators.PASS2_FIELD), "trouble with sending password 1"
+        assert self.click_to_element(*LoginPageLocators.REG_BTN), "trouble with clicking reg button"
+
     def should_be_login_page(self):
         self.should_be_login_url()
         self.should_be_login_form()
